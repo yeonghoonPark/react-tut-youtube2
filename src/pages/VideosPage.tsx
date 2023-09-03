@@ -1,5 +1,14 @@
 import React from "react";
+import { useParams } from "react-router-dom";
 
 export default function VideosPage() {
-  return <div>VideosPage</div>;
+  const { keyword } = useParams();
+
+  return (
+    <div>
+      VideosPage
+      <br />
+      {keyword ? keyword : "Hot Trend"}
+    </div>
+  );
 }
