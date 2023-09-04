@@ -1,34 +1,46 @@
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { BsYoutube, BsSearch } from "react-icons/bs";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 export default function Header() {
+  const { keyword } = useParams();
   const navigate = useNavigate();
   const [text, setText] = useState("");
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    navigate(`/videos/${text}`);
-    setText("");
-  };
+  const handleSubmit = //
+    (e: React.FormEvent<HTMLFormElement>): void => {
+      e.preventDefault();
+      navigate(`/videos/${text}`);
+      setText("");
+    };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setText(e.target.value);
-  };
+  const handleChange = //
+    (e: React.ChangeEvent<HTMLInputElement>): void => {
+      setText(e.target.value);
+    };
+
+  useEffect(() => {
+    setText(keyword || "");
+  }, [keyword]);
 
   return (
     <header>
-      <h1>
-        <Link to='/'>Youtube</Link>
-      </h1>
+      <Link to='/'>
+        <BsYoutube />
+        <h1>Youtube</h1>
+      </Link>
 
       <form onSubmit={handleSubmit}>
         <input
           className='bg-black text-white'
           type='text'
-          value={text}
           placeholder='Search...'
+          value={text}
           onChange={handleChange}
         />
+        <button>
+          <BsSearch />
+        </button>
       </form>
     </header>
   );
