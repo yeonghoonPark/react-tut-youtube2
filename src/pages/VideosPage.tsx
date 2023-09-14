@@ -1,9 +1,8 @@
 import React from "react";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
-
-import VideoCard from "../components/VideoCard";
 import { useYoutubeApi } from "../context/YoutubeContextApi";
+import VideoCard from "../components/VideoCard";
 
 export default function VideosPage() {
   const { keyword } = useParams();
@@ -21,11 +20,9 @@ export default function VideosPage() {
 
   return (
     <>
-      VideosPage
-      <div>{keyword ? keyword : "Hot Trend"}</div>
       {isLoading && <span>Loading..</span>}
       {error && <span>Something is wrong..</span>}
-      <ul>
+      <ul className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-2 gap-y-4'>
         {videos &&
           videos.map((video: any) => (
             <VideoCard key={video.etag} video={video} />
