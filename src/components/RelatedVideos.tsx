@@ -16,7 +16,7 @@ export default function RelatedVkeywordeos({ title }: Props) {
   } = useQuery(
     ["related", title], //
     () => youtube.getRelatedVideos(title),
-    { staleTime: 5 * 60 * 1000 },
+    { staleTime: 1000 * 60 * 5 },
   );
 
   return (
@@ -26,7 +26,7 @@ export default function RelatedVkeywordeos({ title }: Props) {
       <ul>
         {relatedVideos &&
           relatedVideos.map((video: any) => (
-            <VideoCard key={video.etag} video={video} />
+            <VideoCard key={video.etag} video={video} type='list' />
           ))}
       </ul>
     </>

@@ -9,20 +9,18 @@ type Props = {
 
 export default function ChannelInfo({ id, name }: Props) {
   const { youtube } = useYoutubeApi();
-  const {
-    isLoading,
-    error,
-    data: thumbnailUrl,
-  } = useQuery(
+  const { data: thumbnailUrl } = useQuery(
     ["channel", id], //
     () => youtube.getChannelThumbnailUrl(id),
-    { staleTime: 5 * 60 * 1000 },
+    { staleTime: 1000 * 60 * 5 },
   );
 
   return (
-    <div>
-      {thumbnailUrl && <img src={thumbnailUrl} alt={name} />}
-      <p>{name}</p>
+    <div className='flex my-4 mb-8 items-center'>
+      {thumbnailUrl && (
+        <img className='w-10 h-10 rounded-full' src={thumbnailUrl} alt={name} />
+      )}
+      <p className='text-lg font-medium ml-2'>{name}</p>
     </div>
   );
 }

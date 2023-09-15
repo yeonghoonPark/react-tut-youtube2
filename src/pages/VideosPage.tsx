@@ -15,7 +15,7 @@ export default function VideosPage() {
   } = useQuery(
     ["videos", keyword], //
     () => youtube.getVideos(keyword),
-    { staleTime: 5 * 60 * 1000 },
+    { staleTime: 1000 * 60 * 3 },
   );
 
   return (

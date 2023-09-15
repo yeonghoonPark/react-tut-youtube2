@@ -11,8 +11,8 @@ export default function VideoDetailPage() {
   const { title, channelId, channelTitle, description } = video.snippet;
 
   return (
-    <section>
-      <article>
+    <section className='flex flex-col lg:flex-row'>
+      <article className='basis-4/6'>
         <iframe
           title={title}
           id='player'
@@ -20,14 +20,14 @@ export default function VideoDetailPage() {
           height='640'
           src={`https://www.youtube.com/embed/${video.id}`}
         />
-        <div>
-          <h2>{title}</h2>
+        <div className='p-8'>
+          <h2 className='text-xl front-bold'>{title}</h2>
           <ChannelInfo id={channelId} name={channelTitle} />
-          <pre>{description}</pre>
+          <pre className='whitespace-pre-wrap'>{description}</pre>
         </div>
       </article>
 
-      <section>
+      <section className='basis-2/6'>
         <RelatedVideos title={title} />
       </section>
     </section>
